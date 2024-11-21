@@ -1,5 +1,11 @@
-#import numpy as np
+# pylint: disable=E1101
+import myLib.helper
+
+import numpy as np
+#import tensorflow as tensorflow
 import keras as keras
+
+temp = np.zeros((1,1))
 
 # Loading data for handwriting
 train_data, test_data = keras.datasets.mnist.load_data()
@@ -27,3 +33,20 @@ print ("train_set_x shape: " + str(train_set_x.shape))
 print ("train_set_y shape: " + str(train_set_y.shape))
 print ("test_set_x shape: " + str(test_set_x.shape))
 print ("test_set_y shape: " + str(test_set_y.shape))
+
+# Reshape the training and test examples
+train_set_x_flatten = train_set_x.reshape(train_set_x.shape[0], -1).T
+test_set_x_flatten = test_set_x.reshape(test_set_x.shape[0], -1).T
+
+
+print ("train_set_x_flatten shape: " + str(train_set_x_flatten.shape))
+print ("train_set_y shape: " + str(train_set_y.shape))
+print ("test_set_x_flatten shape: " + str(test_set_x_flatten.shape))
+print ("test_set_y shape: " + str(test_set_y.shape))
+
+# standardize dataset
+train_set_x = train_set_x_flatten / 255.
+test_set_x = test_set_x_flatten / 255.
+
+
+logistic_regression_model = myLib.helper.model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations=2000, learning_rate=0.005, print_cost=True)
