@@ -38,7 +38,7 @@ Binary classification with Logistic Regression based Neural Network
     - Sigmoid
         - ![Sigmoid](/assets/images/sigmoid.png)
     - Logistic Regression
-       
+        - ![LogisticRegression](/assets/images/lr.webp) 
 * Conclusion
 
 
