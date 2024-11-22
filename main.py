@@ -13,3 +13,8 @@ logistic_regression_model = myLib.helper.model(
     learning_rate=0.005,
     print_cost=True,
 )
+
+# Predictions on pictures of the test set
+index = 6
+print ("y = " + str(test_set_y[:, index]))
+logistic_regression_model['Y_prediction_test'][0,index]
