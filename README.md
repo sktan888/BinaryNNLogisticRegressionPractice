@@ -33,7 +33,8 @@ Binary classification with Logistic Regression based Neural Network
         - ![Handwriting.](/assets/images/hw.png)
 
 * Modelling
-
+    - Sigmoid
+        - ![Sigmoid.](/assets/images/sigmoid.png)
 * Conclusion
 
 
