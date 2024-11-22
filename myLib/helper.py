@@ -1,10 +1,11 @@
 # pylint: disable=unused-variable
 
-# FUNCTION: sigmoid 
+# FUNCTION: sigmoid
 # Mapping the predicted values to probability between 0 and 1 that an instance belongs to a given class or not
 
 import numpy as np
 import copy
+
 
 def sigmoid(z):
     """
@@ -22,8 +23,9 @@ def sigmoid(z):
     return s
 
 
-# FUNCTION: initialize_with_zeros 
+# FUNCTION: initialize_with_zeros
 # Produce w, column vector and b, a scalar for NN with input layer (as many nodes X features), a hidden layer (one node) and an output layer (one node for Binary output))
+
 
 def initialize_with_zeros(dim):
     """
@@ -46,6 +48,7 @@ def initialize_with_zeros(dim):
 # FUNCTION: propagate
 # Forward propagation from X to Cost computes cost
 # Backward propagation from Cost to X computes gradient dw and db
+
 
 def propagate(w, b, X, Y):
     """
@@ -92,6 +95,7 @@ def propagate(w, b, X, Y):
 # FUNCTION: optimize
 # Optimize w and b by iterating over multiple times forward and backward propagation over the same training dataset
 # Update w and b in each iteration through adjustment using the learning rate
+
 
 def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=False):
     """
@@ -155,6 +159,7 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
 # FUNCTION: predict
 # Compute the probability of unknown example X from the trained w and b
 
+
 def predict(w, b, X):
     """
     Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)
@@ -193,6 +198,7 @@ def predict(w, b, X):
 # FUNCTION: model
 # Produce a trained model from training set
 
+
 def model(
     X_train,
     Y_train,
@@ -217,7 +223,7 @@ def model(
     Returns:
     d -- dictionary containing information about the model.
     """
-  
+
     # initialize parameters with zeros
     # w, b = ...
 
@@ -228,7 +234,7 @@ def model(
     # w = ...
     # b = ...
 
-    # Predict test/train set examples 
+    # Predict test/train set examples
     # Y_prediction_test = ...
     # Y_prediction_train = ...
 

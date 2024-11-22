@@ -2,7 +2,7 @@
 
 import myLib.data
 
-train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest()
+train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(4)
 
 logistic_regression_model = myLib.helper.model(
     train_set_x,
@@ -16,5 +16,5 @@ logistic_regression_model = myLib.helper.model(
 
 # Predictions on pictures of the test set
 index = 6
-print ("y = " + str(test_set_y[:, index]))
-logistic_regression_model['Y_prediction_test'][0,index]
+print("Actual = " + str(test_set_y[:, index]))
+print("Prediction = " + str(logistic_regression_model["Y_prediction_test"][0, index]))

@@ -3,16 +3,17 @@ import myLib.helper
 import numpy as np
 import keras as keras
 
-#import keras 
-#from keras.datasets import mnist
+# import keras
+# from keras.datasets import mnist
 
-#import tensorflow as tf
+# import tensorflow as tf
 
-#mnist = tf.keras.datasets.mnist
+# mnist = tf.keras.datasets.mnist
 
-#(x_train, y_train), (x_test, y_test) = mnist.load_data()
+# (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-def injest():
+
+def injest(digit=2):
     # Loading data for handwriting
     train_data, test_data = keras.datasets.mnist.load_data()
 
@@ -25,6 +26,28 @@ def injest():
     # train set y and test_set_y are originally row vector (m, 1). Reshape to column vector (1,m)
     train_set_y = train_set_y.reshape(1, train_set_y.size)
     test_set_y = test_set_y.reshape(1, test_set_y.size)
+
+    # In handwriting dataset, y is digits 0 to 9 and requires 10 output neurons to classify all 10 digits
+    # Since this is single output NN, consider classifying one digit at one time for now
+    # train_set_y zeros for non N and ones for N
+    # train_set_y_ori_colvector=train_set_y # keep original column vector
+    train_set_y_binary = np.zeros((1, train_set_y.size))
+    classN = digit  # digit to classify
+    index = np.where(
+        train_set_y == classN
+    )  # index of (elements in train_set_y equals classN)
+    train_set_y_binary[0, index[1]] = 1
+
+    # same logic applies to testing dataset
+    # test_set_y_ori_colvector=test_set_y # keep original column vector
+    test_set_y_binary = np.zeros((1, test_set_y.size))
+    index = np.where(
+        test_set_y == classN
+    )  # index of (elements in train_set_y equals classN)
+    test_set_y_binary[0, index[1]] = 1
+
+    train_set_y = train_set_y_binary
+    test_set_y = test_set_y_binary
 
     # Figure out the dimensions and shapes of the problem (m_train, m_test, num_px, ...)
     m_train = train_set_x.shape[0]  # train_set_y.size
@@ -44,7 +67,6 @@ def injest():
     train_set_x_flatten = train_set_x.reshape(train_set_x.shape[0], -1).T
     test_set_x_flatten = test_set_x.reshape(test_set_x.shape[0], -1).T
 
-
     print("train_set_x_flatten shape: " + str(train_set_x_flatten.shape))
     print("train_set_y shape: " + str(train_set_y.shape))
     print("test_set_x_flatten shape: " + str(test_set_x_flatten.shape))
@@ -55,5 +77,3 @@ def injest():
     test_set_x = test_set_x_flatten / 255.0
 
     return train_set_x, train_set_y, test_set_x, test_set_y
-
-
