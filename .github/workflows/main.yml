@@ -1,4 +1,4 @@
-name: Python application test wit Github Actions
+name: Python Install/Lint with Github Actions
 
 on: [push]
 
