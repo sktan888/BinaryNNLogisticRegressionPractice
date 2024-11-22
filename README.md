@@ -30,7 +30,7 @@ Binary classification with Logistic Regression based Neural Network
     - Each pixel is an integer between 0 and 255 
     - Label of the image is the numerical digit
     - Visualization:
-        - ![Handwriting](/assets/images/hw.png)
+        - ![Handwriting](/assets/images/digitHW.png)
 
 * Modelling
     - NN with input layer (as many nodes X features), a hidden layer (one node) and an output layer (one node for Binary output)
