@@ -5,7 +5,7 @@ Binary classification with Logistic Regression based Neural Network
 
 ## Set up working environment
 * create virtual environment: ```virtualenv ENV```
-    - remove directory: ``` rm -f hENV```
+    - remove directory: ``` rm -r hENV```
 * add ```source ENV/bin/activate``` in .bashrc file
     edit bashrc file ```vim ~/.bashrc``` and goes to the last line: ```shift + g``` 
 * create Makefile for make utility : ``` touch Makefile ```
@@ -37,6 +37,8 @@ Binary classification with Logistic Regression based Neural Network
         - ![NN](/assets/images/nn.png)
     - Sigmoid
         - ![Sigmoid](/assets/images/sigmoid.png)
+    - Logistic Regression
+       
 * Conclusion
 
 

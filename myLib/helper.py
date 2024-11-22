@@ -23,7 +23,7 @@ def sigmoid(z):
 
 
 # FUNCTION: initialize_with_zeros 
-# Produce w, column vector and b, a scalar for one neuron NN (one input/output node, no hidden layer)
+# Produce w, column vector and b, a scalar for NN with input layer (as many nodes X features), a hidden layer (one node) and an output layer (one node for Binary output))
 
 def initialize_with_zeros(dim):
     """
