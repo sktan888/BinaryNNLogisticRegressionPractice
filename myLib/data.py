@@ -3,6 +3,15 @@ import myLib.helper
 import numpy as np
 import keras as keras
 
+#import keras 
+#from keras.datasets import mnist
+
+#import tensorflow as tf
+
+#mnist = tf.keras.datasets.mnist
+
+#(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
 def injest():
     # Loading data for handwriting
     train_data, test_data = keras.datasets.mnist.load_data()
