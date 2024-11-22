@@ -17,6 +17,9 @@ Binary classification with Logistic Regression based Neural Network
 
 ## Train Neural Network model
 * Injest data
+The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits. (https://yann.lecun.com/exdb/mnist/)
+    - MNIST dataset consists of 70,000 28x28 black-and-white images of handwritten digits extracted from two NIST databases. 
+    - There are 60,000 images in the training dataset and 10,000 images in the validation dataset, one class per digit so a total of 10 classes, with 7,000 images (6,000 train images and 1,000 test images) per class
 
 * EDA
 

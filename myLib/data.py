@@ -1,12 +1,7 @@
-# pylint: disable=E1101
+# pylint: disable=E1101, unused-import
 import myLib.helper
-
 import numpy as np
-
-# import tensorflow as tensorflow
 import keras as keras
-
-temp = np.zeros((1, 1))
 
 # Loading data for handwriting
 train_data, test_data = keras.datasets.mnist.load_data()
