@@ -1,3 +1,5 @@
+[![Python application test wit Github Actions](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml/badge.svg)](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml)
+
 # BinaryNNLogisticRegressionPractice
 Binary classification with Neural Network based on Logistic Regression
 
