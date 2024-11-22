@@ -29,7 +29,8 @@ Binary classification with Logistic Regression based Neural Network
     - Each image is represented as an array of pixels of shape=(28, 28, 1), dtype=uint8
     - Each pixel is an integer between 0 and 255 
     - Label of the image is the numerical digit
-    - Visualization: ![Handwriting.](/assets/images/hw.png)
+    - Visualization:
+        - ![Handwriting.](/assets/images/hw.png)
 
 * Modelling
 
