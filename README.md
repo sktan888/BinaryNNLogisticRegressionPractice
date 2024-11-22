@@ -30,11 +30,11 @@ Binary classification with Logistic Regression based Neural Network
     - Each pixel is an integer between 0 and 255 
     - Label of the image is the numerical digit
     - Visualization:
-        - ![Handwriting.](/assets/images/hw.png)
+        - ![Handwriting](/assets/images/hw.png)
 
 * Modelling
     - Sigmoid
-        - ![Sigmoid.](/assets/images/sigmoid.png)
+        - ![Sigmoid](/assets/images/sigmoid.png)
 * Conclusion
 
 
