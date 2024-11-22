@@ -26,6 +26,10 @@ Binary classification with Logistic Regression based Neural Network
     - Per digit/class: 7,000 images (6,000 train images and 1,000 test images)
 
 * EDA
+    - Each image is represented as an array of pixels of shape=(28, 28, 1), dtype=uint8
+    - Each pixel is an integer between 0 and 255 
+    - Label of the image is the numerical digit
+    - Visualization:
 
 * Modelling
 
