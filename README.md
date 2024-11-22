@@ -33,6 +33,8 @@ Binary classification with Logistic Regression based Neural Network
         - ![Handwriting](/assets/images/hw.png)
 
 * Modelling
+    - NN with input layer (as many nodes X features), a hidden layer (one node) and an output layer (one node for Binary output)
+        - ![NN](/assets/images/nn.png)
     - Sigmoid
         - ![Sigmoid](/assets/images/sigmoid.png)
 * Conclusion
