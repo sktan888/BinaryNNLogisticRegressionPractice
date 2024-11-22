@@ -3,7 +3,7 @@
 # BinaryNNLogisticRegressionPractice
 Binary classification with Logistic Regression based Neural Network 
 
-Setting up the environment:
+## Set up working environment
 * create virtual environment: ```virtualenv ENV```
     - remove directory: ``` rm -f hENV```
 * add ```source ENV/bin/activate``` in .bashrc file
@@ -11,8 +11,19 @@ Setting up the environment:
 * create Makefile for make utility : ``` touch Makefile ```
     - rename a file: ```mv oldfilename newfilename```
 * create Requirements.txt for package install : ``` touch Requirement.txt ```
-    - find out package version" ```pip freeze | less```
+    - find out package version ```pip freeze | less```
     - create library folder: ``` mkdir myLib ```
+
+
+## Train Neural Network model
+* Injest data
+
+* EDA
+
+* Modelling
+
+* Conclusion
+
 
 
 

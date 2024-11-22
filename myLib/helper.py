@@ -1,9 +1,10 @@
 # pylint: disable=unused-variable
 
-# FUNCTION: sigmoid
+# FUNCTION: sigmoid 
+# Mapping the predicted values to probability between 0 and 1 that an instance belongs to a given class or not
+
 import numpy as np
 import copy
-
 
 def sigmoid(z):
     """
@@ -13,7 +14,7 @@ def sigmoid(z):
     z -- A scalar or numpy array of any size.
 
     Return:
-    s -- sigmoid(z)
+    s -- sigmoid(z), a probability between 0 and 1
     """
 
     s = 1 / (1 + np.exp(-z))
@@ -21,8 +22,8 @@ def sigmoid(z):
     return s
 
 
-# FUNCTION: initialize_with_zeros
-
+# FUNCTION: initialize_with_zeros 
+# Produce w, column vector and b, a scalar for one neuron NN (one input/output node, no hidden layer)
 
 def initialize_with_zeros(dim):
     """
@@ -43,7 +44,8 @@ def initialize_with_zeros(dim):
 
 
 # FUNCTION: propagate
-
+# Forward propagation from X to Cost computes cost
+# Backward propagation from Cost to X computes gradient dw and db
 
 def propagate(w, b, X, Y):
     """
@@ -87,8 +89,9 @@ def propagate(w, b, X, Y):
     return grads, cost
 
 
-# GRADED FUNCTION: optimize
-
+# FUNCTION: optimize
+# Optimize w and b by iterating over multiple times forward and backward propagation over the same training dataset
+# Update w and b in each iteration through adjustment using the learning rate
 
 def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=False):
     """
@@ -150,7 +153,7 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
 
 
 # FUNCTION: predict
-
+# Compute the probability of unknown example X from the trained w and b
 
 def predict(w, b, X):
     """
@@ -172,8 +175,7 @@ def predict(w, b, X):
     # Compute vector "A" predicting the probabilities of a cat being present in the picture
     A = sigmoid(np.dot(np.transpose(w), X) + b)
 
-    # YOUR CODE ENDS HERE
-
+    # Using loop
     for i in range(A.shape[1]):
 
         # Convert probabilities A[0,i] to actual predictions p[0,i]
@@ -181,16 +183,15 @@ def predict(w, b, X):
             Y_prediction[0, i] = 1
         else:
             Y_prediction[0, i] = 0
-        # YOUR CODE ENDS HERE
 
-    # No for loop
+    # Using no loop for better efficieny
     # Y_prediction[A > 0.5] = 1
 
     return Y_prediction
 
 
 # FUNCTION: model
-
+# Produce a trained model from training set
 
 def model(
     X_train,
@@ -216,12 +217,10 @@ def model(
     Returns:
     d -- dictionary containing information about the model.
     """
-    # (≈ 1 line of code)
+  
     # initialize parameters with zeros
-    # and use the "shape" function to get the first dimension of X_train
     # w, b = ...
 
-    # (≈ 1 line of code)
     # Gradient descent
     # params, grads, costs = ...
 
@@ -229,11 +228,10 @@ def model(
     # w = ...
     # b = ...
 
-    # Predict test/train set examples (≈ 2 lines of code)
+    # Predict test/train set examples 
     # Y_prediction_test = ...
     # Y_prediction_train = ...
 
-    # YOUR CODE STARTS HERE
     w, b = initialize_with_zeros(X_train.shape[0])
     params, grads, costs = optimize(
         w, b, X_train, Y_train, num_iterations, learning_rate, print_cost
@@ -242,7 +240,6 @@ def model(
     b = params["b"]
     Y_prediction_test = predict(w, b, X_test)
     Y_prediction_train = predict(w, b, X_train)
-    # YOUR CODE ENDS HERE
 
     # Print train/test Errors
     if print_cost:
