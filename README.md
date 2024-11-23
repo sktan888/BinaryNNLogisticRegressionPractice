@@ -46,6 +46,7 @@ Binary classification with Logistic Regression based Neural Network
 * Saving trained NN parameters (i.e. w and b)
     - NPY files are a binary file format used to store NumPy arrays efficiently storing large arrays and loading back
     - How to Use NPY Files
+    <p align="center">
 ```
 import numpy as np
 
@@ -60,4 +61,4 @@ loaded_model = np.load('model.npy')
 
 print(loaded_model)
 ```
-
+</p>
