@@ -67,7 +67,7 @@ w = np.load('model_weights.npy')
 b = np.load('model_bias.npy')[0] # convert a Python array with a single element to a scalar
 ```
 
-* CLI
+* Command Line Interface (CLI)
 ```
 ## predicting.py
 
@@ -75,26 +75,20 @@ b = np.load('model_bias.npy')[0] # convert a Python array with a single element 
 
 """The env command allows users to display the current environment or run a specified command in a changed environment."""
 
-from mylib.calc import add
 import click
-
 
 @click.group()
 def cli():
-    """run calculator lib"""
-
-
-@cli.command("add")
-@click.argument("a", type=float)
-@click.argument("b", type=float)
-def add_cmd(a, b):
-    """add two numbers"""
-    click.echo(add(a, b))
-
+    """run NN Prediction"""
+@cli.command()
+@click.argument("example", type=int)
+def predict_cmd(example):
+    click.echo(a)
+    click.echo(p)
+    log("Example " + str(example) + " :: "  + a + " : " + p)
 
 if __name__ == "__main__":
-    cli()
-
+cli()
 ```
 
 * Test
@@ -114,6 +108,5 @@ def test_more_goodbye():
 
 def test_add():
     assert 10 == add(5, 5)
-
 
 ```
