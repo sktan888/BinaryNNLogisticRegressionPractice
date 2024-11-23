@@ -24,12 +24,12 @@ logistic_regression_model = myLib.helper.model(
 index = 6
 print("Actual = " + str(test_set_y[:, index]))
 print("Prediction = " + str(logistic_regression_model["Y_prediction_test"][0, index]))
-#assert test_set_y[:, index] == logistic_regression_model["Y_prediction_test"][0, index]
+# assert test_set_y[:, index] == logistic_regression_model["Y_prediction_test"][0, index]
 
 # save model to an NPY file
-np.save('model_weights.npy', logistic_regression_model["w"])
-np.save('model_bias.npy', np.array([logistic_regression_model["b"]]) )
+np.save("model_weights.npy", logistic_regression_model["w"])
+np.save("model_bias.npy", np.array([logistic_regression_model["b"]]))
 
 # save datasets to an NPY file
-np.save('test_set_x.npy', test_set_x)
-np.save('test_set_y.npy', test_set_y)
+np.save("test_set_x.npy", test_set_x)
+np.save("test_set_y.npy", test_set_y)

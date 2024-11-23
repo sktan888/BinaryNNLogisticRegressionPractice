@@ -43,22 +43,77 @@ Binary classification with Logistic Regression based Neural Network
         - ![LogisticRegression](/assets/images/lr.webp) 
 * Conclusion
 
-* Saving trained NN parameters (i.e. w and b)
+* Saving trained NN parameters (i.e. w and b) in NPY Files
     - NPY files are a binary file format used to store NumPy arrays efficiently storing large arrays and loading back
-    - How to Use NPY Files
-    <p align="center">
 ```
 import numpy as np
 
-# Create a NumPy array
-model = np.array([1, 2, 3, 4, 5])
+# Save the array to an NPY file in modelling.py
+# save model to an NPY file
+np.save('model_weights.npy', logistic_regression_model["w"])
+np.save('model_bias.npy', np.array([logistic_regression_model["b"]]) )
 
-# Save the array to an NPY file
-np.save('model.npy', model)
+# save datasets to an NPY file
+np.save('test_set_x.npy', test_set_x)
+np.save('test_set_y.npy', test_set_y)
 
-# Load the array from the NPY file
-loaded_model = np.load('model.npy')
+# Load the array from the NPY file in predicting.py
+# injest test datasets from the NPY file
+test_set_x = np.load('test_set_x.npy')
+test_set_y = np.load('test_set_y.npy')
 
-print(loaded_model)
+# Load trained model from the NPY file
+w = np.load('model_weights.npy')
+b = np.load('model_bias.npy')[0] # convert a Python array with a single element to a scalar
 ```
-</p>
+
+* CLI
+```
+## predicting.py
+
+#!/usr/bin/env python3
+
+"""The env command allows users to display the current environment or run a specified command in a changed environment."""
+
+from mylib.calc import add
+import click
+
+
+@click.group()
+def cli():
+    """run calculator lib"""
+
+
+@cli.command("add")
+@click.argument("a", type=float)
+@click.argument("b", type=float)
+def add_cmd(a, b):
+    """add two numbers"""
+    click.echo(add(a, b))
+
+
+if __name__ == "__main__":
+    cli()
+
+```
+
+* Test
+```
+#test_hello.py
+
+from hello import more_hello, more_goodbye, add
+
+
+def test_more_hello():
+    assert "hi" == more_hello()
+
+
+def test_more_goodbye():
+    assert "bye" == more_goodbye()
+
+
+def test_add():
+    assert 10 == add(5, 5)
+
+
+```

@@ -24,6 +24,6 @@ logistic_regression_model = myLib.helper.model(
 index = 6
 print("Actual = " + str(test_set_y[:, index]))
 print("Prediction = " + str(logistic_regression_model["Y_prediction_test"][0, index]))
-#assert test_set_y[:, index] == logistic_regression_model["Y_prediction_test"][0, index]
+# assert test_set_y[:, index] == logistic_regression_model["Y_prediction_test"][0, index]
 
 # save model
