@@ -28,7 +28,7 @@ def predict_cmd(example):
 
     # injest image file
     # Preprocess the image to fit  the NN algorithm.
-    fname = "images/" + example
+    fname = "assets/images/" + example
     image = np.array(Image.open(fname).resize((num_px, num_px)))
     plt.imshow(image)
     image = image / 255.
