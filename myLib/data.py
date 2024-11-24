@@ -1,16 +1,8 @@
 # pylint: disable=E1101, unused-import
-# import myLib.helper
+
 import numpy as np
 import keras as keras
-
-# import keras
-# from keras.datasets import mnist
-
-# import tensorflow as tf
-
-# mnist = tf.keras.datasets.mnist
-
-# (x_train, y_train), (x_test, y_test) = mnist.load_data()
+from myLib.mylog import log
 
 
 def injest(digit=2):
@@ -52,7 +44,7 @@ def injest(digit=2):
     # Figure out the dimensions and shapes of the problem (m_train, m_test, num_px, ...)
     m_train = train_set_x.shape[0]  # train_set_y.size
     m_test = test_set_x.shape[0]
-    num_px = train_set_x.shape[1]
+    num_px = train_set_x.shape[1]  # assume image is square
 
     print("Number of training examples: m_train = " + str(m_train))
     print("Number of testing examples: m_test = " + str(m_test))
@@ -62,6 +54,8 @@ def injest(digit=2):
     print("train_set_y shape: " + str(train_set_y.shape))
     print("test_set_x shape: " + str(test_set_x.shape))
     print("test_set_y shape: " + str(test_set_y.shape))
+
+    log("train_set_x shape: " + str(train_set_x.shape))
 
     # Reshape the training and test examples
     train_set_x_flatten = train_set_x.reshape(train_set_x.shape[0], -1).T
