@@ -1,13 +1,15 @@
 # pylint: disable=pointless-statement
 #!/usr/bin/env python3
 
-import numpy as np
+import numpy as np   
 from myLib.helper import predict
 from myLib.mylog import log
 import matplotlib.pyplot as plt
 from PIL import Image
 
 import click
+
+
 
 
 @click.group()
