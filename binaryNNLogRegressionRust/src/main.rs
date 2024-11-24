@@ -1,5 +1,3 @@
-
-
 mod data;
 use crate::data::injest;
 
