@@ -26,7 +26,7 @@ def predict_cmd(example):
     test_set_x = np.load("test_set_x.npy")
     num_px = test_set_x.shape[1]
 
-    # injest image file
+    # injest image file my_image.jpg
     # Preprocess the image to fit  the NN algorithm.
     fname = "assets/images/" + example
     image = np.array(Image.open(fname).resize((num_px, num_px)))
