@@ -10,3 +10,4 @@ click==8.1.7
 numpy==2.0.2
 keras==3.6.0
 tensorflow==2.18.0
+matplotlib==3.9.2
