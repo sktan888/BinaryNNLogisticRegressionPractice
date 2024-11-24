@@ -68,6 +68,7 @@ b = np.load('model_bias.npy')[0] # convert a Python array with a single element 
 ```
 
 * Command Line Interface (CLI)
+    - ``` python predicting.py predict-cmd 55 ``` 55 refers to example in test dataset
 ```
 ## predicting.py
 
