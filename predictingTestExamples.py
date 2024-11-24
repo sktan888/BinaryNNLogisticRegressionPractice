@@ -1,7 +1,7 @@
 # pylint: disable=pointless-statement
 #!/usr/bin/env python3
 
-# python predictingTestExamples.py predict_cmd Example where Example is the index of test dataset
+# python predictingTestExamples.py predict-cmd Example where Example is the index of test dataset
 #
 
 import numpy as np

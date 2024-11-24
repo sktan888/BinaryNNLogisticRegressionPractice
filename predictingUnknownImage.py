@@ -1,7 +1,7 @@
 # pylint: disable=pointless-statement, unused-variable
 #!/usr/bin/env python3
 
-# python predictingUnknownImage.py predict_cmd Image where Image is the filename nine.jpg uploaded in assets/images folder
+# python predictingUnknownImage.py predict-cmd Image where Image is the filename nine.jpg uploaded in assets/images folder
 
 import numpy as np
 from myLib.helper import predict

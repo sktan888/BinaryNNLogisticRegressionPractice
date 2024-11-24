@@ -1,9 +1,11 @@
 # pylint: disable=pointless-statement
 #!/usr/bin/env python3
 
-# python modelling.py modelling_cmd N where N is the digit to classify
+# python modeling.py modeling-cmd N where N is the digit to classify
 
 import myLib.data
+import myLib.helper
+
 import numpy as np
 import click
 from myLib.mylog import log
@@ -16,7 +18,7 @@ def cli():
 
 @cli.command()
 @click.argument("digit", type=int)
-def modelling_cmd(digit):
+def modeling_cmd(digit):
 
     # injest datasets
     train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(digit)
@@ -48,5 +50,9 @@ def modelling_cmd(digit):
     np.save("test_set_x.npy", test_set_x)
     np.save("test_set_y.npy", test_set_y)
 
-    click.echo("Cost = " + str(logistic_regression_model["costs"]))
-    log("Cost = " + str(logistic_regression_model["costs"]))
+    click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
+    log("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
+
+
+if __name__ == "__main__":
+    cli()
