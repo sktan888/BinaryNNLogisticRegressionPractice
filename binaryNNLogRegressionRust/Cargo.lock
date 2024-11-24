@@ -5,3 +5,21 @@ version = 3
 [[package]]
 name = "BinaryNNLogRegression"
 version = "0.1.0"
+dependencies = [
+ "mnist",
+]
+
+[[package]]
+name = "byteorder"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1fd0f2584146f6f2ef48085050886acf353beff7305ebd1ae69500e27c67f64b"
+
+[[package]]
+name = "mnist"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9fd2e5236a5f13d41d4f6eba34f535d037cb9fc4b244896886a7ebe0764142a5"
+dependencies = [
+ "byteorder",
+]
