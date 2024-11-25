@@ -19,14 +19,23 @@ Binary classification with Logistic Regression based Neural Network
 
 ## Neural Network in python
 * Injest
-
     The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits. (https://yann.lecun.com/exdb/mnist/)
     - Consisting of 70,000 28x28 black-and-white images of handwritten digits
     - 60,000 images in the training dataset
     - 10,000 images in the validation dataset
     - 10 classes: one class per digit
     - Per digit/class: 7,000 images (6,000 train images and 1,000 test images)
-
+    - data.py ``` train_data, test_data = keras.datasets.mnist.load_data() ```
+    - In MNIST handwriting dataset, y is digits 0 to 9 and requires 10 output neurons to classify all 10 digits
+    - For binary classification i.e. single output NN, consider classifying for a given single digit 
+    ``` 
+    train_set_y_binary = np.zeros((1, train_set_y.size))
+    classN = digit  # digit to classify
+    index = np.where(
+        train_set_y == classN
+    )  # index of (elements in train_set_y equals classN)
+    train_set_y_binary[0, index[1]] = 1
+    ```
 * EDA
     - Each image is represented as an array of pixels of shape=(28, 28, 1), dtype=uint8
     - Each pixel is an integer between 0 and 255 
