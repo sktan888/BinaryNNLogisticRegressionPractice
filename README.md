@@ -25,8 +25,8 @@ Binary classification with Logistic Regression based Neural Network
     - 10 classes 0 to 9: one class for each  digit
     - 60,000 images in the training dataset, 10,000 images in the validation dataset
     - 7,000 images (6,000 train images and 1,000 test images) for each digit/class
-    - Classifying MNIST for digits 0 to 9, would require 10 output neurons to classify all 10 digits
-    - In binary classification i.e. single output NN, could classify a given single digit 
+    - Non binary classification of MNIST for 0 to 9, would require 10 output neurons to classify all 10 digits
+    - Binary classification NN simplies to telling if a handwriting is the trained digit
     ``` 
     train_set_y_binary = np.zeros((1, train_set_y.size))
     classN = digit  # digit to classify
