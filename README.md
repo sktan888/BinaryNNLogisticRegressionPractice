@@ -76,25 +76,51 @@ b = np.load('model_bias.npy')[0] # convert a Python array with a single element 
 ```
 
 * Command Line Interface (CLI)
-    - ``` python predicting.py predict-cmd 55 ``` 55 refers to example in test dataset
+    - ``` python main.py predict-test 55 ``` 55 refers to the example index of test dataset
 ```
-## predicting.py
+## main.py
 
 #!/usr/bin/env python3
-
 """The env command allows users to display the current environment or run a specified command in a changed environment."""
 
 import click
 
 @click.group()
 def cli():
-    """run NN Prediction"""
+    """run NN modelling and prediction"""
+
+
 @cli.command()
-@click.argument("example", type=int)
-def predict_cmd(example):
-    click.echo(a)
-    click.echo(p)
-    log("Example " + str(example) + " :: "  + a + " : " + p)
+@click.argument("digit", type=int)
+def modeling(digit):
+    """train NN model weights and bias to classify a given handwriting digit supplied in the argument"""
+
+    # injest datasets
+    train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(digit)
+
+    # EDA
+
+    # train model
+    logistic_regression_model = myLib.helper.model(
+        train_set_x,
+        train_set_y,
+        test_set_x,
+        test_set_y,
+        num_iterations=100,
+        learning_rate=0.005,
+        print_cost=True,
+    )
+
+    # save model to an NPY file
+    np.save("model_weights.npy", logistic_regression_model["w"])
+    np.save("model_bias.npy", np.array([logistic_regression_model["b"]]))
+
+    # save datasets to an NPY file
+    np.save("test_set_x.npy", test_set_x)
+    np.save("test_set_y.npy", test_set_y)
+
+    click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
+    log("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
 
 if __name__ == "__main__":
 cli()
@@ -103,20 +129,10 @@ cli()
 * Test
 ```
 #test_hello.py
-
 from hello import more_hello, more_goodbye, add
-
-
 def test_more_hello():
     assert "hi" == more_hello()
-
-
-def test_more_goodbye():
-    assert "bye" == more_goodbye()
-
-
-def test_add():
-    assert 10 == add(5, 5)
-
 ```
 ## Neural Network in RUST
+* Injest in data.rs ```  let (x_train, y_train, x_test, y_test) = mnist.load_mnist(None).expect("Error loading MNIST");
+ ```
