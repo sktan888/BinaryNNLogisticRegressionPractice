@@ -24,6 +24,24 @@ pub fn injest(_digit: i32) {
     let (x_train, y_train), (x_test, y_test) = mnist.split_test_train();
 
     /*
+
+    let train_images_path = "assets/data/mnist/train-images-idx3-ubyte";
+    let train_labels_path = "assets/data/mnist/train-labels-idx1-ubyte";
+    let test_images_path = "assets/data/mnist/t10k-images-idx3-ubyte";
+    let test_labels_path = "assets/data/mnist/t10k-labels-idx1-ubyte";
+    
+    let mnist = MnistBuilder::new()
+        .training_set((
+            File::open(train_images_path)?,
+            File::open(train_labels_path)?,
+        ))
+        .test_set((
+            File::open(test_images_path)?,
+            File::open(test_labels_path)?,
+        ))
+        .finalize()
+        .expect("Error initializing MNIST");
+        
     let mnist = MnistBuilder::new()
         .label_format_digit()
         .finalize();

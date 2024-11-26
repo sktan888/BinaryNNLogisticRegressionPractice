@@ -5,33 +5,52 @@ extern crate mnist;
 //use ndarray::{Array2, Array1};
 //use tensorflow::{Tensor, Session};
 
-use mnist::{Mnist, MnistBuilder};
-use std::fs::File;
-use std::io::Read;
-
-
-
+//use mnist::{Mnist, MnistBuilder};
+//use std::fs::File;
+//use std::io::Read;
+use mnist::*;
+use ndarray::prelude::*;
 // Loading data for handwriting pub fn injest(digit: i32) {
 
-pub fn injest(_digit: i32) -> Result<(), Box<dyn std::error::Error>> {
+pub fn injest(_digit: i32) {
     // Specify the path to the MNIST data files
-    let train_images_path = "assets/data/mnist-hw/train-images-idx3-ubyte";
-    let train_labels_path = "assets/data/mnist-hw/train-labels-idx1-ubyte";
-    let test_images_path = "assets/data/mnist-hw/t10k-images-idx3-ubyte";
-    let test_labels_path = "assets/data/mnist-hw/t10k-labels-idx1-ubyte";
 
-    // Load the MNIST dataset from the specified paths
-    let mnist = MnistBuilder::new()
-        .training_set((
-            File::open(train_images_path)?,
-            File::open(train_labels_path)?,
-        ))
-        .test_set((
-            File::open(test_images_path)?,
-            File::open(test_labels_path)?,
-        ))
-        .finalize()
-        .expect("Error initializing MNIST");
+    // Download and Load the MNIST dataset
+    let Mnist {
+        trn_img,
+        trn_lbl,
+        tst_img,
+        tst_lbl,
+        ..
+    } = MnistBuilder::new()
+        .label_format_digit()
+        .training_set_length(50_000)
+        .validation_set_length(10_000)
+        .test_set_length(10_000)
+        .finalize();
 
+    let image_num = 0;
+    // Can use an Array2 or Array3 here (Array3 for visualization)
+    let train_data = Array3::from_shape_vec((50_000, 28, 28), trn_img)
+        .expect("Error converting images to Array3 struct")
+        .map(|x| *x as f32 / 256.0);
+    println!("{:#.1?}\n", train_data.slice(s![image_num, .., ..]));
+
+    // Convert the returned Mnist struct to Array2 format
+    let train_labels: Array2<f32> = Array2::from_shape_vec((50_000, 1), trn_lbl)
+        .expect("Error converting training labels to Array2 struct")
+        .map(|x| *x as f32);
+    println!(
+        "The first digit is a {:?}",
+        train_labels.slice(s![image_num, ..])
+    );
+
+    let _test_data = Array3::from_shape_vec((10_000, 28, 28), tst_img)
+        .expect("Error converting images to Array3 struct")
+        .map(|x| *x as f32 / 256.);
+
+    let _test_labels: Array2<f32> = Array2::from_shape_vec((10_000, 1), tst_lbl)
+        .expect("Error converting testing labels to Array2 struct")
+        .map(|x| *x as f32);
     // ... rest of the code as before
 }

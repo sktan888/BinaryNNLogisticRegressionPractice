@@ -136,16 +136,18 @@ def test_more_hello():
 ## Neural Network in RUST
 * Injest in data.rs ```  let (x_train, y_train, x_test, y_test) = mnist.load_mnist(None).expect("Error loading MNIST");```
 * download MNIST datasets
+* The MNIST data set is a collection of four gzip files and can be found [here] (http://yann.lecun.com/exdb/mnist/). 
+* There is one file for each of the following: the training set images, the training set labels, the test set images, and the test set labels.
+* The four files must be downloaded and extracted. By default, they will be looked for in a “data” directory at the top of level of your crate.
 
+```  curl -L "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > data/train-images-idx3-ubyte.gz ```
 
-```  curl -L "https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > assets/data/mnist/train-images-idx3-ubyte.gz ```
+```  curl -L "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz" > data/t10k-images-idx3-ubyte.gz ```
 
-```  curl -L "https://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz" > assets/data/mnist/t10k-images-idx3-ubyte.gz ```
+```  curl -L "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz" > data/train-labels-idx1-ubyte.gz ```
 
-```  curl -L "https://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz" > assets/data/mnist/train-labels-idx1-ubyte.gz ```
+``` curl -L "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz" >  datat10k-labels-idx1-ubyte.gz ```
 
-``` curl -L "https://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz" > assets/data/mnist/t10k-labels-idx1-ubyte.gz ```
-
-``` curl -O https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz ```
+``` curl -O http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz ```
 ``` gunzip * ```
 ``` git rm ```
