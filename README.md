@@ -146,3 +146,5 @@ def test_more_hello():
 
 ``` curl -L "https://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz" > assets/data/mnist/t10k-labels-idx1-ubyte.gz ```
 
+``` curl -O https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz ```
+``` gunzip * ```
