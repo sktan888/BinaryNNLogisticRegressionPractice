@@ -46,4 +46,7 @@ pub fn injest(_digit: i32) {
         .expect("Error converting testing labels to Array2 struct")
         .map(|x| *x as f32);
 
+    // Print the shape of the training data
+    println!("Shape of train_data: {:?}", train_data.shape());
+    println!("Shape of train_labels: {:?}", train_labels.shape());
 }
