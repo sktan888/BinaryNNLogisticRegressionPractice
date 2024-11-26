@@ -22,12 +22,12 @@ pub fn injest(_digit: i32) {
         .test_set_length(10_000)
         .finalize();
 
-    let image_num = 0;
+    let _image_num = 0;
     // Can use an Array2 or Array3 here (Array3 for visualization)
     let train_data = Array3::from_shape_vec((50_000, 28, 28), trn_img)
         .expect("Error converting images to Array3 struct")
         .map(|x| *x as f32 / 256.0);
-    
+
     //println!("{:#.1?}\n", train_data.slice(s![image_num, .., ..]));
 
     // Convert the returned Mnist struct to Array2 format
@@ -40,11 +40,11 @@ pub fn injest(_digit: i32) {
         train_labels.slice(s![image_num, ..])
     );
     */
-    let _test_data = Array3::from_shape_vec((10_000, 28, 28), tst_img)
+    let test_data = Array3::from_shape_vec((10_000, 28, 28), tst_img)
         .expect("Error converting images to Array3 struct")
         .map(|x| *x as f32 / 256.);
 
-    let _test_labels: Array2<f32> = Array2::from_shape_vec((10_000, 1), tst_lbl)
+    let test_labels: Array2<f32> = Array2::from_shape_vec((10_000, 1), tst_lbl)
         .expect("Error converting testing labels to Array2 struct")
         .map(|x| *x as f32);
 
