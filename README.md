@@ -148,3 +148,4 @@ def test_more_hello():
 
 ``` curl -O https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz ```
 ``` gunzip * ```
+``` git rm ```
