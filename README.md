@@ -140,7 +140,7 @@ def test_more_hello():
 
 ```  curl -L "https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > assets/data/mnist/train-images-idx3-ubyte.gz ```
 
-```  curl -L "https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > assets/data/mnist/train-images-idx3-ubyte.gz ```
+```  curl -L "https://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz" > assets/data/mnist/t10k-images-idx3-ubyte.gz ```
 
 ```  curl -L "https://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz" > assets/data/mnist/train-labels-idx1-ubyte.gz ```
 
