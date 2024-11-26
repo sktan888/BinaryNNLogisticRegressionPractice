@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+google-drive = "0.7.0"
+google-drive3 = "6.0.0"
 mnist = "0.6.0"
 ndarray = "0.16.1"
-tensorflow = "0.21.0"
