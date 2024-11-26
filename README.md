@@ -135,6 +135,8 @@ def test_more_hello():
 ```
 ## Neural Network in RUST
 * Injest in data.rs ```  let (x_train, y_train, x_test, y_test) = mnist.load_mnist(None).expect("Error loading MNIST");```
+* download MNIST datasets
+
 
 ```  curl -L "https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > assets/data/mnist/train-images-idx3-ubyte.gz ```
 
