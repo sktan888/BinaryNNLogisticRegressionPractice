@@ -1,19 +1,12 @@
 extern crate mnist;
-//extern crate tensorflow;
 
-// use ndarray::prelude::*;
 //use ndarray::{Array2, Array1};
-//use tensorflow::{Tensor, Session};
-
-//use mnist::{Mnist, MnistBuilder};
-//use std::fs::File;
-//use std::io::Read;
 use mnist::*;
 use ndarray::prelude::*;
-// Loading data for handwriting pub fn injest(digit: i32) {
 
+// Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
-    // Specify the path to the MNIST data files
+    // The default path to the MNIST data files is /data of top layer crate
 
     // Download and Load the MNIST dataset
     let Mnist {
@@ -52,5 +45,5 @@ pub fn injest(_digit: i32) {
     let _test_labels: Array2<f32> = Array2::from_shape_vec((10_000, 1), tst_lbl)
         .expect("Error converting testing labels to Array2 struct")
         .map(|x| *x as f32);
-    // ... rest of the code as before
+
 }
