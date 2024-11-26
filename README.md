@@ -140,14 +140,3 @@ def test_more_hello():
 * There is one file for each of the following: the training set images, the training set labels, the test set images, and the test set labels.
 * The four files must be downloaded and extracted. By default, they will be looked for in a “data” directory at the top of level of your crate.
 
-```  curl -L "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz" > data/train-images-idx3-ubyte.gz ```
-
-```  curl -L "http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz" > data/t10k-images-idx3-ubyte.gz ```
-
-```  curl -L "http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz" > data/train-labels-idx1-ubyte.gz ```
-
-``` curl -L "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz" >  datat10k-labels-idx1-ubyte.gz ```
-
-``` curl -O http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz ```
-``` gunzip * ```
-``` git rm ```
