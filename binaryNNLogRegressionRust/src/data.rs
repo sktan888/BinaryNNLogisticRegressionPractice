@@ -17,21 +17,20 @@ pub fn injest(_digit: i32) {
         ..
     } = MnistBuilder::new()
         .label_format_digit()
-        .training_set_length(50_000)
-        .validation_set_length(10_000)
+        .training_set_length(60_000)
         .test_set_length(10_000)
         .finalize();
-
+    //.validation_set_length(10_000)
     let _image_num = 0;
     // Can use an Array2 or Array3 here (Array3 for visualization)
-    let train_data = Array3::from_shape_vec((50_000, 28, 28), trn_img)
+    let train_data = Array3::from_shape_vec((60_000, 28, 28), trn_img)
         .expect("Error converting images to Array3 struct")
         .map(|x| *x as f32 / 256.0);
 
     //println!("{:#.1?}\n", train_data.slice(s![image_num, .., ..]));
 
     // Convert the returned Mnist struct to Array2 format
-    let train_labels: Array2<f32> = Array2::from_shape_vec((50_000, 1), trn_lbl)
+    let train_labels: Array2<f32> = Array2::from_shape_vec((60_000, 1), trn_lbl)
         .expect("Error converting training labels to Array2 struct")
         .map(|x| *x as f32);
     /*
