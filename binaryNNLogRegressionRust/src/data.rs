@@ -4,8 +4,9 @@ extern crate mnist;
 use mnist::*;
 //use ndarray::prelude::*;
 
-use ndarray::{Array2, arr2};
-use ndarray::Array3;
+use ndarray::{arr2, Array2};
+
+use ndarray::{Array3, arr3};
 
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
@@ -86,7 +87,7 @@ pub fn injest(_digit: i32) {
             .copied()
             .collect()
     }
-    
+
 
     let array: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
     let flattened_array: Vec<i32> = flatten_array(array);
@@ -97,30 +98,68 @@ pub fn injest(_digit: i32) {
     // Create a 2D array
     let array: Array2<i32> = arr2(&[[1, 2, 3], [4, 5, 6]]);
     println!("Shape of  2D array: {:?}", array.shape());
-    
+
     let (flattened_vec, _) = array.into_raw_vec_and_offset();
     println!("Shape of flattened_vec: {:?}", flattened_vec.len());
 
+    let _nested_array: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
+    // let array: Array2<i32> = Array2::from(nested_array);
+    // Assign arr2 to array
+    // let array: Array2<i32> = arr2;
 
     let vec3d: Vec<Vec<Vec<i32>>> = vec![
-    vec![vec![1, 2, 3], vec![4, 5, 6]],
-    vec![vec![7, 8, 9], vec![10, 11, 12]],
+        vec![vec![1, 2, 3], vec![4, 5, 6]],
+        vec![vec![7, 8, 9], vec![10, 11, 12]],
     ];
     let element = vec3d[1][0][2]; // Accesses the element at (1, 0, 2)
 
     println!("element: {:?}", element);
-
 
     // let ndarray_3d: Array3<i32> = Array3::from(vec3d);
 
     // println!("Shape of array3d: {:?}", ndarray_3d.shape());
 
     let a: Array3<i32> = Array3::zeros((8, 5, 2));
-    
+
     println!("Shape of array3d: {:?}", a.shape());
 
-    let array_dd: Array3<i32> = Array3::zeros((2, 3, 4)); // Create a 2x3x4 array filled with zeros
+    let _array_dd: Array3<i32> = Array3::zeros((2, 3, 4)); // Create a 2x3x4 array filled with zeros
 
+
+    //println!("{:?}", array_dd);
+
+    let a = arr3(&[
+        [
+        [ 1,  2,  3],     // -- 2 rows  \_
+        [ 4,  5,  6]],    // --         /
+        [
+        [ 7,  8,  9],     //            \_ 2 submatrices
+        [10, 11, 12]
+        ]
+        ]);  //            /
+        //  3 columns ..../.../.../
+
+
+    let b = arr3(&[
+        [
+        [ 1,  2,  3],     // -- 2 rows  \_
+        [ 4,  5,  6]
+        ]
+        ]);  //            /
+        //  3 columns ..../.../.../
+
+    let c = arr2(&[
+        [ 1,  2,  3],
+        [ 4,  5,  6]
+        ]);  
+      
+
+    assert_eq!(a.shape(), &[2, 2, 3]);
+    assert_eq!(b.shape(), &[1, 2, 3]);
+    assert_eq!(c.shape(), &[2, 3]);
+    println!("Shape of array3d: {:?}", a.shape());
+    println!("Shape of array2d: {:?}", b.shape());
+    println!("Shape of array2d: {:?}", c.shape());
     /*
     // Flatten the nested Vec into a single vector
     let flattened: Vec<T> = v.into_iter()
@@ -136,8 +175,6 @@ pub fn injest(_digit: i32) {
     */
     // let array3d = Array3::from(data);
 
-    println!("{:?}", array_dd);
-    
     // Access the dimension information
     /*
     let dim = arr.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
