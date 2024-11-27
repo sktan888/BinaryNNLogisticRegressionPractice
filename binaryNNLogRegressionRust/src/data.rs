@@ -109,7 +109,20 @@ pub fn injest(_digit: i32) {
         vec![vec![7, 8, 9], vec![10, 11, 12]],
     ];
 
-    let array3d = Array3::from(data);
+    /*
+    // Flatten the nested Vec into a single vector
+    let flattened: Vec<T> = v.into_iter()
+    .flat_map(|v1| v1.into_iter().flat_map(|v2| v2.into_iter().flat_map(|v3| v3)))
+    .collect();
+
+    // Determine the dimensions from the original nested Vec
+    let (d1, d2, d3, d4) = (v.len(), v[0].len(), v[0][0].len(), v[0][0][0].len());
+
+    // Reshape the flattened vector into an Array4
+    Array4::from_shape((d1, d2, d3, d4), flattened)
+
+    */
+    // let array3d = Array3::from(data);
 
     println!("{:?}", array3d);
     
