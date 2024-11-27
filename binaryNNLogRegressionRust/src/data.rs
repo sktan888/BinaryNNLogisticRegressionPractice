@@ -2,9 +2,10 @@ extern crate mnist;
 
 //use ndarray::{Array2, Array1};
 use mnist::*;
-use ndarray::prelude::*;
+//use ndarray::prelude::*;
 
 use ndarray::{Array2, arr2};
+use ndarray::Array3;
 
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
@@ -77,10 +78,7 @@ pub fn injest(_digit: i32) {
     );
 
     // Flatten array(60_000, 28, 28) into (:,60000)
-    //let nested_vec = vec![vec![1, 2, 3], vec![4, 5, 6]];
-    //let _flattened_vec: Vec<i32> = nested_vec.into_iter().flatten().collect();
-    //println!("Shape of nested_vec: {:?}", nested_vec.shape());
-    //println!("Shape of flattened_vec: {:?}", flattened_vec.shape());
+
 
     // Create a 2D array
     let array: Array2<i32> = arr2(&[[1, 2, 3], [4, 5, 6]]);
@@ -89,10 +87,32 @@ pub fn injest(_digit: i32) {
     let (flattened_vec, _) = array.into_raw_vec_and_offset();
     println!("Shape of flattened_vec: {:?}", flattened_vec.len());
 
-    //let flattened_vec: Vec<i32> = array.into_raw_vec_and_offset();
 
-    //println!("{:?}", flattened_vec); // Output: [1, 2, 3, 4, 5, 6]
+    let vec3d: Vec<Vec<Vec<i32>>> = vec![
+    vec![vec![1, 2, 3], vec![4, 5, 6]],
+    vec![vec![7, 8, 9], vec![10, 11, 12]],
+    ];
+    let element = vec3d[1][0][2]; // Accesses the element at (1, 0, 2)
 
+    println!("element: {:?}", element);
+
+    // let ndarray_3d: Array3<i32> = Array3::from(vec3d);
+
+    // println!("Shape of array3d: {:?}", ndarray_3d.shape());
+
+    let a: Array3<i32> = Array3::zeros((8, 5, 2));
+    
+    println!("Shape of array3d: {:?}", a.shape());
+
+    let data = vec![
+        vec![vec![1, 2, 3], vec![4, 5, 6]],
+        vec![vec![7, 8, 9], vec![10, 11, 12]],
+    ];
+
+    let array3d = Array3::from(data);
+
+    println!("{:?}", array3d);
+    
     // Access the dimension information
     /*
     let dim = arr.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
