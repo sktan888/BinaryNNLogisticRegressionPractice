@@ -79,6 +79,20 @@ pub fn injest(_digit: i32) {
 
     // Flatten array(60_000, 28, 28) into (28x28,60000)
 
+    /*
+    fn flatten_array<T, const N: usize, const M: usize>(arr: [[T; M]; N]) -> Vec<T> {
+        arr.iter()
+            .flatten()
+            .copied()
+            .collect()
+    }
+    
+
+    let array: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
+    let flattened_array: Vec<i32> = flatten_array(array);
+
+    println!("{:?}", flattened_array); // Output: [1, 2, 3, 4, 5, 6]
+    */
 
     // Create a 2D array
     let array: Array2<i32> = arr2(&[[1, 2, 3], [4, 5, 6]]);
