@@ -4,6 +4,8 @@ extern crate mnist;
 use mnist::*;
 use ndarray::prelude::*;
 
+use ndarray::{Array2, arr2};
+
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
     // The default path to the MNIST data files is /data of top layer crate
@@ -55,26 +57,41 @@ pub fn injest(_digit: i32) {
     println!("Shape of train_data: {:?}", train_data.shape());
     println!("Shape of test_data: {:?}", test_data.shape());
 
-
-
     // # train set y and test_set_y are originally row vector (m, 1) array. Reshape to column vector (1,m) array
     println!("Shape of train_labels: {:?}", train_labels.shape());
     println!("Shape of test_labels: {:?}", test_labels.shape());
-    println!("Element of train_labels: {:?}", train_labels[(0,0)]);
+    println!("Element of train_labels: {:?}", train_labels[(0, 0)]);
 
     // Reshape the ArrayView1 into a 2D array
     let _shape = (1, m_train); // Reshape into a (1,m) matrix
-    let train_labels_colvector = train_labels.into_shape_with_order((1,60_000)).unwrap();
-    println!("Shape of train_labels_colvector: {:?}", train_labels_colvector.shape());
+    let train_labels_colvector = train_labels.into_shape_with_order((1, 60_000)).unwrap();
+    println!(
+        "Shape of train_labels_colvector: {:?}",
+        train_labels_colvector.shape()
+    );
 
-    let test_labels_colvector = test_labels.into_shape_with_order((1,10_000)).unwrap();
-    println!("Shape of test_labels_colvector: {:?}", test_labels_colvector.shape());
-    
+    let test_labels_colvector = test_labels.into_shape_with_order((1, 10_000)).unwrap();
+    println!(
+        "Shape of test_labels_colvector: {:?}",
+        test_labels_colvector.shape()
+    );
+
     // Flatten array(60_000, 28, 28) into (:,60000)
-    let nested_vec = vec![vec![1, 2, 3], vec[4, 5, 6]];
-    let flattened_vec: Vec<i32> = nested_vec.into_iter().flatten().collect();
-    println!("Shape of nested_vec: {:?}", nested_vec.shape());
-    println!("Shape of flattened_vec: {:?}", flattened_vec.shape());
+    //let nested_vec = vec![vec![1, 2, 3], vec![4, 5, 6]];
+    //let _flattened_vec: Vec<i32> = nested_vec.into_iter().flatten().collect();
+    //println!("Shape of nested_vec: {:?}", nested_vec.shape());
+    //println!("Shape of flattened_vec: {:?}", flattened_vec.shape());
+
+    // Create a 2D array
+    let array: Array2<i32> = arr2(&[[1, 2, 3], [4, 5, 6]]);
+    println!("Shape of  2D array: {:?}", array.shape());
+    
+    let (flattened_vec, _) = array.into_raw_vec_and_offset();
+    println!("Shape of flattened_vec: {:?}", flattened_vec.len());
+
+    //let flattened_vec: Vec<i32> = array.into_raw_vec_and_offset();
+
+    //println!("{:?}", flattened_vec); // Output: [1, 2, 3, 4, 5, 6]
 
     // Access the dimension information
     /*
