@@ -77,7 +77,7 @@ pub fn injest(_digit: i32) {
         test_labels_colvector.shape()
     );
 
-    // Flatten array(60_000, 28, 28) into (:,60000)
+    // Flatten array(60_000, 28, 28) into (28x28,60000)
 
 
     // Create a 2D array
@@ -96,6 +96,7 @@ pub fn injest(_digit: i32) {
 
     println!("element: {:?}", element);
 
+
     // let ndarray_3d: Array3<i32> = Array3::from(vec3d);
 
     // println!("Shape of array3d: {:?}", ndarray_3d.shape());
@@ -104,10 +105,7 @@ pub fn injest(_digit: i32) {
     
     println!("Shape of array3d: {:?}", a.shape());
 
-    let data = vec![
-        vec![vec![1, 2, 3], vec![4, 5, 6]],
-        vec![vec![7, 8, 9], vec![10, 11, 12]],
-    ];
+    let array_dd: Array3<i32> = Array3::zeros((2, 3, 4)); // Create a 2x3x4 array filled with zeros
 
     /*
     // Flatten the nested Vec into a single vector
@@ -124,7 +122,7 @@ pub fn injest(_digit: i32) {
     */
     // let array3d = Array3::from(data);
 
-    println!("{:?}", array3d);
+    println!("{:?}", array_dd);
     
     // Access the dimension information
     /*
