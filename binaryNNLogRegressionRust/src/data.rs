@@ -1,7 +1,24 @@
 extern crate mnist;
+//use itertools::Itertools;
 use mnist::*;
-use ndarray::{Array3, Array2, Zip};
-use itertools::Itertools;
+use ndarray::{Array2, Array3}; //, Zip};
+
+/*
+fn find_index<T: PartialEq>(arr: &[T], target: &T) -> Option<usize> {
+    for (i, x) in arr.iter().enumerate() {
+        if x == target {
+            return Some(i);
+        }
+    }
+    None
+}
+*/
+fn find_indices_filter<T: PartialEq>(arr: &[T], target: &T) -> Vec<usize> {
+    arr.iter().enumerate()
+        .filter(|(_, x)| **x == *target)
+        .map(|(i, _)| i)
+        .collect()
+}
 
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
@@ -57,16 +74,38 @@ pub fn injest(_digit: i32) {
     // train_set_y zeros for non N and ones for N
     // ???
     //    train_set_y_binary = np.zeros((1, train_set_y.size))
-    let train_set_y_binary: Array2<i32> = Array2::zeros((60000,1));
+    let train_set_y_binary: Array2<i32> = Array2::zeros((60000, 1));
     assert_eq!(train_set_y_binary.shape(), &[60000, 1]);
 
-    let array=train_set_y_binary;
+    let _array = train_set_y_binary;
+
+    //let target_number = &3;
+    //indices = find_indices_filter(array, target_number);
+
+    let numbers = [1, 2, 3, 4, 5];
+    let target_number = &3;
+
+    /*
+    if let Some(index) = find_index(&numbers, target_number) {
+        println!("Found {} at index {}", target_number, index);
+    } else {
+        println!("{} not found", target_number);
+    }
+    */
+
+    let index2 = find_indices_filter(&numbers, target_number);
+    println!("Found {} at index {:?}", target_number, index2);
+
+    let index3 = find_indices_filter(&train_labels, target_number);
+    println!("Found {} at index {:?}", target_number, index3);
+
+    /*
     let indices = Zip::from(&array)
         .zip(Zip::indices(&array))
         .filter_map(|(x, (i, j))| if x != 0 { Some((i, j)) } else { None })
         .collect::<Vec<_>>();
-
-    println!("Non-zero indices: {:?}", indices);
+    */
+    //println!("Non-zero indices: {:?}", indices);
 
     // Reshape the ArrayView1 into a 2D array
     let _shape = (1, m_train); // Reshape into a (1,m) matrix
@@ -95,9 +134,6 @@ pub fn injest(_digit: i32) {
     // Transpose the reshaped array to get the desired shape (784, 10000)
     let flattened_test_data = reshaped_data.t();
     println!("Flattened test shape: {:?}", flattened_test_data.shape());
-
-
-
 
     /*
     let dims = flattened_train_data.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
@@ -151,8 +187,8 @@ pub fn injest(_digit: i32) {
     let c = arr2(&[
         [ 1,  2,  3],
         [ 4,  5,  6]
-        ]);  
-     
+        ]);
+
 
     assert_eq!(a.shape(), &[2, 2, 3]);
     assert_eq!(b.shape(), &[1, 2, 3]);
