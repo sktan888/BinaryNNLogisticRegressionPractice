@@ -19,7 +19,7 @@ fn find_indices_filter<T: PartialEq>(arr: &[T], target: &T) -> Vec<usize> {
         .map(|(i, _)| i)
         .collect()
 }
-fn find_indices_filter2<T: PartialEq>(arr: &[f32], target: &f32) -> Vec<usize> {
+fn find_indices_filter2<f32: PartialEq>(arr: &[f32], target: &f32) -> Vec<usize> {
     arr.iter().enumerate()
         .filter(|(_, x)| **x == *target)
         .map(|(i, _)| i)
