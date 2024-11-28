@@ -1,12 +1,7 @@
 extern crate mnist;
-
-//use ndarray::{Array2, Array1};
 use mnist::*;
-//use ndarray::prelude::*;
-
-use ndarray::{arr2, Array2};
-
-use ndarray::{Array3, arr3};
+use ndarray::{Array3, Array2, Zip};
+use itertools::Itertools;
 
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
@@ -28,25 +23,18 @@ pub fn injest(_digit: i32) {
         .training_set_length(m_train)
         .test_set_length(m_test)
         .finalize();
-    //.validation_set_length(m_test)
+
     let _image_num = 0;
-    // Can use an Array2 or Array3 here (Array3 for visualization)
+
     let train_data = Array3::from_shape_vec((60_000, 28, 28), trn_img)
         .expect("Error converting images to Array3 struct")
         .map(|x| *x as f32 / 256.0);
-
-    //println!("{:#.1?}\n", train_data.slice(s![image_num, .., ..]));
 
     // Convert the returned Mnist struct to Array2 format
     let train_labels: Array2<f32> = Array2::from_shape_vec((60_000, 1), trn_lbl)
         .expect("Error converting training labels to Array2 struct")
         .map(|x| *x as f32);
-    /*
-    println!(
-        "The first digit is a {:?}",
-        train_labels.slice(s![image_num, ..])
-    );
-    */
+
     let test_data = Array3::from_shape_vec((10_000, 28, 28), tst_img)
         .expect("Error converting images to Array3 struct")
         .map(|x| *x as f32 / 256.);
@@ -64,6 +52,22 @@ pub fn injest(_digit: i32) {
     println!("Shape of test_labels: {:?}", test_labels.shape());
     println!("Element of train_labels: {:?}", train_labels[(0, 0)]);
 
+    // In handwriting dataset, y is digits 0 to 9 and requires 10 output neurons to classify all 10 digits
+    // Since this is single output NN, consider classifying one digit at one time for now
+    // train_set_y zeros for non N and ones for N
+    // ???
+    //    train_set_y_binary = np.zeros((1, train_set_y.size))
+    let train_set_y_binary: Array2<i32> = Array2::zeros((60000,1));
+    assert_eq!(train_set_y_binary.shape(), &[60000, 1]);
+
+    let array=train_set_y_binary;
+    let indices = Zip::from(&array)
+        .zip(Zip::indices(&array))
+        .filter_map(|(x, (i, j))| if x != 0 { Some((i, j)) } else { None })
+        .collect::<Vec<_>>();
+
+    println!("Non-zero indices: {:?}", indices);
+
     // Reshape the ArrayView1 into a 2D array
     let _shape = (1, m_train); // Reshape into a (1,m) matrix
     let train_labels_colvector = train_labels.into_shape_with_order((1, 60_000)).unwrap();
@@ -78,22 +82,27 @@ pub fn injest(_digit: i32) {
         test_labels_colvector.shape()
     );
 
-    // Flatten array(60_000, 28, 28) into (28x28,60000)
+    // Flatten train dataset from array(60000, 28, 28) into (784,60000) and test dataset from (10000,28,28) to (748, 10000)
+
+    assert_eq!(train_data.shape(), &[60000, 28, 28]);
+    // Reshape the array into a 2D array with shape (60000, 784)
+    let reshaped_data = train_data.to_shape((60000, 784)).unwrap();
+    // Transpose the reshaped array to get the desired shape (784, 60000)
+    let flattened_train_data = reshaped_data.t();
+    println!("Flattened train shape: {:?}", flattened_train_data.shape());
+
+    let reshaped_data = test_data.to_shape((10000, 784)).unwrap();
+    // Transpose the reshaped array to get the desired shape (784, 10000)
+    let flattened_test_data = reshaped_data.t();
+    println!("Flattened test shape: {:?}", flattened_test_data.shape());
+
+
+
 
     /*
-    fn flatten_array<T, const N: usize, const M: usize>(arr: [[T; M]; N]) -> Vec<T> {
-        arr.iter()
-            .flatten()
-            .copied()
-            .collect()
-    }
-
-
-    let array: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
-    let flattened_array: Vec<i32> = flatten_array(array);
-
-    println!("{:?}", flattened_array); // Output: [1, 2, 3, 4, 5, 6]
-    */
+    let dims = flattened_train_data.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
+    //let (_row, _col) = dims.into(); // Extract dimensions as tuple
+    println!("Flattened train dim: {:?}", dims);
 
     // Create a 2D array
     let array: Array2<i32> = arr2(&[[1, 2, 3], [4, 5, 6]]);
@@ -103,9 +112,6 @@ pub fn injest(_digit: i32) {
     println!("Shape of flattened_vec: {:?}", flattened_vec.len());
 
     let _nested_array: [[i32; 3]; 2] = [[1, 2, 3], [4, 5, 6]];
-    // let array: Array2<i32> = Array2::from(nested_array);
-    // Assign arr2 to array
-    // let array: Array2<i32> = arr2;
 
     let vec3d: Vec<Vec<Vec<i32>>> = vec![
         vec![vec![1, 2, 3], vec![4, 5, 6]],
@@ -115,18 +121,12 @@ pub fn injest(_digit: i32) {
 
     println!("element: {:?}", element);
 
-    // let ndarray_3d: Array3<i32> = Array3::from(vec3d);
-
-    // println!("Shape of array3d: {:?}", ndarray_3d.shape());
 
     let a: Array3<i32> = Array3::zeros((8, 5, 2));
 
     println!("Shape of array3d: {:?}", a.shape());
 
     let _array_dd: Array3<i32> = Array3::zeros((2, 3, 4)); // Create a 2x3x4 array filled with zeros
-
-
-    //println!("{:?}", array_dd);
 
     let a = arr3(&[
         [
@@ -152,7 +152,7 @@ pub fn injest(_digit: i32) {
         [ 1,  2,  3],
         [ 4,  5,  6]
         ]);  
-      
+     
 
     assert_eq!(a.shape(), &[2, 2, 3]);
     assert_eq!(b.shape(), &[1, 2, 3]);
@@ -160,24 +160,11 @@ pub fn injest(_digit: i32) {
     println!("Shape of array3d: {:?}", a.shape());
     println!("Shape of array2d: {:?}", b.shape());
     println!("Shape of array2d: {:?}", c.shape());
-    /*
-    // Flatten the nested Vec into a single vector
-    let flattened: Vec<T> = v.into_iter()
-    .flat_map(|v1| v1.into_iter().flat_map(|v2| v2.into_iter().flat_map(|v3| v3)))
-    .collect();
 
-    // Determine the dimensions from the original nested Vec
-    let (d1, d2, d3, d4) = (v.len(), v[0].len(), v[0][0].len(), v[0][0][0].len());
-
-    // Reshape the flattened vector into an Array4
-    Array4::from_shape((d1, d2, d3, d4), flattened)
-
-    */
-    // let array3d = Array3::from(data);
-
-    // Access the dimension information
-    /*
-    let dim = arr.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
-    let (x, y, z) = dim.into_tuple(); // Extract dimensions as tuple
+        // Access the dimension information
+        /*
+        let dim = arr.dim(); // This is of type `ndarray::Dim<[usize; 3]>`
+        let (x, y, z) = dim.into_tuple(); // Extract dimensions as tuple
+        */
     */
 }
