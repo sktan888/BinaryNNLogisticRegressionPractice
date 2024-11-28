@@ -19,7 +19,12 @@ fn find_indices_filter<T: PartialEq>(arr: &[T], target: &T) -> Vec<usize> {
         .map(|(i, _)| i)
         .collect()
 }
-
+fn find_indices_filter2<T: PartialEq>(arr: &[f32], target: &f32) -> Vec<usize> {
+    arr.iter().enumerate()
+        .filter(|(_, x)| **x == *target)
+        .map(|(i, _)| i)
+        .collect()
+}
 // Loading data for handwriting pub fn injest(digit: i32) {
 pub fn injest(_digit: i32) {
     // The default path to the MNIST data files is /data of top layer crate
@@ -84,7 +89,7 @@ pub fn injest(_digit: i32) {
 
     let numbers = [1, 2, 3, 4, 5];
     let target_number = &3;
-
+    let target_number2 = 3 as f32;
     /*
     if let Some(index) = find_index(&numbers, target_number) {
         println!("Found {} at index {}", target_number, index);
@@ -96,7 +101,9 @@ pub fn injest(_digit: i32) {
     let index2 = find_indices_filter(&numbers, target_number);
     println!("Found {} at index {:?}", target_number, index2);
 
-    let index3 = find_indices_filter(&train_labels, target_number);
+    let (my_vector, _)= train_labels.into_raw_vec_and_offset();
+
+    let index3 = find_indices_filter2(&my_vector, &target_number2);
     println!("Found {} at index {:?}", target_number, index3);
 
     /*
