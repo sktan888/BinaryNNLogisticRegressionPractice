@@ -1,5 +1,5 @@
 [package]
-name = "BinaryNNLogRegression"
+name = "logisticregression"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,3 +7,5 @@ edition = "2021"
 itertools = "0.13.0"
 mnist = "0.6.0"
 ndarray = "0.16.1"
+statrs = "0.17.1"
+
