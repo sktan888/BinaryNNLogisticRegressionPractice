@@ -17,6 +17,7 @@ Binary classification with Logistic Regression based Neural Network
     - create library folder: ``` mkdir myLib ```
 
 
+
 ## Neural Network in python
 * Injest in data.py ``` train_data, test_data = keras.datasets.mnist.load_data() ```
 
@@ -140,3 +141,4 @@ def test_more_hello():
 * There is one file for each of the following: the training set images, the training set labels, the test set images, and the test set labels.
 * The four files must be downloaded and extracted. By default, they will be looked for in a “data” directory at the top of level of your crate.
 
+``` cargo run main 2 ```

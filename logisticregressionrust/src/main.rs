@@ -11,3 +11,4 @@ fn main() {
     let digit: f32 = string_number.parse().unwrap();
     let (_train_x, _train_y, _test_x, _test_y) = injest(digit); //9.0);
 }
+
