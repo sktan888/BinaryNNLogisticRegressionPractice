@@ -1,7 +1,5 @@
 [![Python Install/Lint with Github Actions](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml/badge.svg)](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml)
 
-[![Clippy Rust Lint with Github Actions](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/rust.yml/badge.svg)](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/rust.yml)
-
 # BinaryNNLogisticRegressionPractice
 Binary classification with Logistic Regression based Neural Network 
 
