@@ -1,7 +1,7 @@
 [![Python Install/Lint with Github Actions](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml/badge.svg)](https://github.com/sktan888/BinaryNNLogisticRegressionPractice/actions/workflows/main.yml)
 
-# BinaryNNLogisticRegressionPractice
-Binary classification with Logistic Regression based Neural Network 
+# LogisticRegression in Python
+Binary classification with Logistic Regression 
 
 ## Set up working environment
 * create virtual environment: ```virtualenv ENV```
@@ -24,8 +24,8 @@ Binary classification with Logistic Regression based Neural Network
     - 10 classes 0 to 9: one class for each  digit
     - 60,000 images in the training dataset, 10,000 images in the validation dataset
     - 7,000 images (6,000 train images and 1,000 test images) for each digit/class
-    - Non binary classification of MNIST for 0 to 9, would require 10 output neurons to classify all 10 digits
-    - Binary classification NN simplies to telling if a handwriting is the trained digit
+    - Classification of MNIST for 0 to 9, would require 10 output NN to classify all 10 digits
+    - Binary classification based on logistic regression simplies to telling if a handwriting is the trained digit
     ``` 
     train_set_y_binary = np.zeros((1, train_set_y.size))
     classN = digit  # digit to classify
@@ -50,7 +50,7 @@ Binary classification with Logistic Regression based Neural Network
         - ![LogisticRegression](/assets/images/lr.webp) 
 * Conclusion
 
-* Saving trained NN parameters (i.e. w and b) in NPY Files
+* Saving trained model parameters (i.e. w and b) in NPY Files
     - NPY files are a binary file format used to store NumPy arrays efficiently storing large arrays and loading back
 ```
 import numpy as np
@@ -132,11 +132,3 @@ from hello import more_hello, more_goodbye, add
 def test_more_hello():
     assert "hi" == more_hello()
 ```
-## Neural Network in RUST
-* Injest in data.rs ```  let (x_train, y_train, x_test, y_test) = mnist.load_mnist(None).expect("Error loading MNIST");```
-* download MNIST datasets
-* The MNIST data set is a collection of four gzip files and can be found [here] (http://yann.lecun.com/exdb/mnist/). 
-* There is one file for each of the following: the training set images, the training set labels, the test set images, and the test set labels.
-* The four files must be downloaded and extracted. By default, they will be looked for in a “data” directory at the top of level of your crate.
-
-``` cargo run main 2 ```
