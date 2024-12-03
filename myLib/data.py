@@ -36,7 +36,7 @@ def injest(digit=2):
     index = np.where(
         test_set_y == classN
     )  # index of (elements in train_set_y equals classN)
-    test_set_y_binary[0, index[1]] = 1
+    test_set_y_binary[0, index[1]] = 1 # binary classification 0 or 1
 
     train_set_y = train_set_y_binary
     test_set_y = test_set_y_binary

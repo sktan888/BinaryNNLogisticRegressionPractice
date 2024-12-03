@@ -13,10 +13,11 @@ Binary classification with Logistic Regression
 * create Requirements.txt for package install : ``` touch Requirement.txt ```
     - find out package version ```pip freeze | less```
     - create library folder: ``` mkdir myLib ```
+    - install modules ``` make install ```
 
 
 
-## Neural Network in python
+## Logistic Regression in python
 * Injest in data.py ``` train_data, test_data = keras.datasets.mnist.load_data() ```
 
     The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits. (https://yann.lecun.com/exdb/mnist/)
@@ -42,88 +43,22 @@ Binary classification with Logistic Regression
         - ![Handwriting](/assets/images/digitHW.png)
 
 * Modelling
-    - NN with input layer (as many nodes X features), a hidden layer (one node) and an output layer (one node for Binary output)
+    - Logistic regression architecture
         - ![NN](/assets/images/nn.png)
-    - Sigmoid
+    - Sigmoid 
         - ![Sigmoid](/assets/images/sigmoid.png)
-    - Logistic Regression
+    - Binary classification
         - ![LogisticRegression](/assets/images/lr.webp) 
 * Conclusion
 
 * Saving trained model parameters (i.e. w and b) in NPY Files
     - NPY files are a binary file format used to store NumPy arrays efficiently storing large arrays and loading back
-```
-import numpy as np
 
-# Save the array to an NPY file in modelling.py
-# save model to an NPY file
-np.save('model_weights.npy', logistic_regression_model["w"])
-np.save('model_bias.npy', np.array([logistic_regression_model["b"]]) )
-
-# save datasets to an NPY file
-np.save('test_set_x.npy', test_set_x)
-np.save('test_set_y.npy', test_set_y)
-
-# Load the array from the NPY file in predicting.py
-# injest test datasets from the NPY file
-test_set_x = np.load('test_set_x.npy')
-test_set_y = np.load('test_set_y.npy')
-
-# Load trained model from the NPY file
-w = np.load('model_weights.npy')
-b = np.load('model_bias.npy')[0] # convert a Python array with a single element to a scalar
-```
 
 * Command Line Interface (CLI)
+    - ``` python main.py modeling 5 ``` 5 refers to the digit for recognition
     - ``` python main.py predict-test 55 ``` 55 refers to the example index of test dataset
-```
-## main.py
-
-#!/usr/bin/env python3
-"""The env command allows users to display the current environment or run a specified command in a changed environment."""
-
-import click
-
-@click.group()
-def cli():
-    """run NN modelling and prediction"""
-
-
-@cli.command()
-@click.argument("digit", type=int)
-def modeling(digit):
-    """train NN model weights and bias to classify a given handwriting digit supplied in the argument"""
-
-    # injest datasets
-    train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(digit)
-
-    # EDA
-
-    # train model
-    logistic_regression_model = myLib.helper.model(
-        train_set_x,
-        train_set_y,
-        test_set_x,
-        test_set_y,
-        num_iterations=100,
-        learning_rate=0.005,
-        print_cost=True,
-    )
-
-    # save model to an NPY file
-    np.save("model_weights.npy", logistic_regression_model["w"])
-    np.save("model_bias.npy", np.array([logistic_regression_model["b"]]))
-
-    # save datasets to an NPY file
-    np.save("test_set_x.npy", test_set_x)
-    np.save("test_set_y.npy", test_set_y)
-
-    click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
-    log("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
-
-if __name__ == "__main__":
-cli()
-```
+    - ``` python main.py unseen filename ``` filename refers to the image stored in assets/images/ folder
 
 * Test
 ```

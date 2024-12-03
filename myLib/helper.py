@@ -147,7 +147,7 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
 
             # Print the cost every 100 training iterations
             if print_cost:
-                print("Cost after iteration %i: %f" % (i, cost))
+                print("Cost after iteration %i: %f %f" % (i, cost, b))
 
     params = {"w": w, "b": b}
 
