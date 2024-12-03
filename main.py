@@ -33,7 +33,7 @@ def modeling(digit):
         train_set_y,
         test_set_x,
         test_set_y,
-        num_iterations=2000,
+        num_iterations=10,
         learning_rate=0.005,
         print_cost=True,
     )
@@ -56,9 +56,9 @@ def modeling(digit):
     )  # index of (elements in Y_prediction_test equals 1)
     log("b = " + str(np.squeeze(logistic_regression_model["b"])))
     _, col_index = index 
-    # log("found 1 in these places = " + str(np.squeeze(index[row_index, :]))) #
-    log("Predict given digit in Y_prediction_test = " + str(np.squeeze(col_index))) #
-    # log("found 1 in these places = " + str(np.squeeze(index))) #
+
+    # log("Predict given digit in Y_prediction_test = " + str(np.squeeze(col_index))) #
+
 
 @cli.command()
 @click.argument("example", type=int)

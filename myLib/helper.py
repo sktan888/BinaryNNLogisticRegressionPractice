@@ -5,7 +5,7 @@
 
 import numpy as np
 import copy
-
+from myLib.mylog import log
 
 def sigmoid(z):
     """
@@ -142,7 +142,7 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
         b -= learning_rate * db
 
         # Record the costs
-        if i % 100 == 0:
+        if i % 1 == 0:
             costs.append(cost)
 
             # Print the cost every 100 training iterations
@@ -259,6 +259,36 @@ def model(
                 100 - np.mean(np.abs(Y_prediction_test - Y_test)) * 100
             )
         )
+
+    # 3 Dec 24
+    # index is tuple of arrays 
+    index = np.where(
+        Y_prediction_test == 1
+    )  # index of (elements in Y_prediction_test equals 1)
+    _, col_index = index 
+    # log("Found given digit %i times out of total %i in Y_prediction_test = " % col_index.size, %Y_prediction_test.size + str(np.squeeze(col_index))) #
+    log(f"Found given digit {col_index.size} times out of total {Y_prediction_test.size} in Y_prediction_test = {np.squeeze(col_index)}")
+
+    index = np.where(
+        Y_test == 1
+    )  # index of (elements in X_test equals 1)
+    _, col_index = index 
+    #log("Found given digit %i times  in Y_test = "  % col_index.size + str(np.squeeze(col_index))) #
+    log(f"Found given digit {col_index.size} times out of total {Y_test.size} in Y_test = {np.squeeze(col_index)}")
+
+    index = np.where(
+        Y_prediction_train == 1
+    )  # index of (elements in Y_prediction_train equals 1)
+    _, col_index = index 
+    #log("Found given digit %i times  in Y_prediction_train = "  % col_index.size + str(np.squeeze(col_index))) #
+    log(f"Found given digit {col_index.size} times out of total {Y_prediction_train.size} in Y_prediction_train = {np.squeeze(col_index)}")
+
+    index = np.where(
+        Y_train == 1
+    )  # index of (elements in Y_train equals 1)
+    _, col_index = index 
+    #log("Found given digit %i times  in Y_train = "   % col_index.size + str(np.squeeze(col_index))) #
+    log(f"Found given digit {col_index.size} times out of total {Y_train.size} in Y_train = {np.squeeze(col_index)}")
 
     d = {
         "costs": costs,
