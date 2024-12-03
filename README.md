@@ -55,10 +55,14 @@ Binary classification with Logistic Regression
     - NPY files are a binary file format used to store NumPy arrays efficiently storing large arrays and loading back
 
 
-* Command Line Interface (CLI)
-    - ``` python main.py modeling 5 ``` 5 refers to the digit for recognition
-    - ``` python main.py predict-test 55 ``` 55 refers to the example index of test dataset
-    - ``` python main.py unseen filename ``` filename refers to the image stored in assets/images/ folder
+## Command Line Interface (CLI)
+``` python main.py injest 5 ``` 5 refers to the digit for preprocessing dataset
+
+``` python main.py modeling 5 ``` 5 refers to the digit for modeling
+
+``` python main.py predict-test 55 ``` 55 refers to the example index of test dataset
+
+``` python main.py unseen filename ``` filename refers to the image stored in assets/images/ folder
 
 * Test
 ```

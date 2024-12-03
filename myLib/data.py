@@ -55,7 +55,7 @@ def injest(digit=2):
     print("test_set_x shape: " + str(test_set_x.shape))
     print("test_set_y shape: " + str(test_set_y.shape))
 
-    log("train_set_x shape: " + str(train_set_x.shape))
+    #log("train_set_x shape: " + str(train_set_x.shape))
 
     # Reshape the training and test examples
     train_set_x_flatten = train_set_x.reshape(train_set_x.shape[0], -1).T
@@ -69,5 +69,15 @@ def injest(digit=2):
     # standardize dataset
     train_set_x = train_set_x_flatten / 255.0
     test_set_x = test_set_x_flatten / 255.0
+
+    
+    #print("Element of test_set_x_flatten: %f", train_set_x_flatten[(0,0)])
+    #print(f"Element of train_set_x [12, 12352]: {train_set_x[12, 12352]}")
+
+    index = np.where(
+        train_set_x > 0.0
+    )  # return index of elements 
+    print(index)
+    
 
     return train_set_x, train_set_y, test_set_x, test_set_y

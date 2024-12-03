@@ -16,6 +16,14 @@ def cli():
     """run NN modelling and prediction"""
     pass
 
+@cli.command()
+@click.argument("digit", type=int)
+def injest(digit):
+    """train NN model weights and bias to classify a given handwriting digit supplied in the argument"""
+
+    # injest datasets
+    train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(digit)
+
 
 @cli.command()
 @click.argument("digit", type=int)
@@ -33,7 +41,7 @@ def modeling(digit):
         train_set_y,
         test_set_x,
         test_set_y,
-        num_iterations=10,
+        num_iterations=2000,
         learning_rate=0.005,
         print_cost=True,
     )
@@ -46,7 +54,7 @@ def modeling(digit):
     np.save("test_set_x.npy", test_set_x)
     np.save("test_set_y.npy", test_set_y)
 
-    click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
+    #click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
     log("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
 
     # 3 Dec 24
@@ -57,8 +65,11 @@ def modeling(digit):
     log("b = " + str(np.squeeze(logistic_regression_model["b"])))
     _, col_index = index 
 
-    # log("Predict given digit in Y_prediction_test = " + str(np.squeeze(col_index))) #
+    # log("Predict given digit in Y_prediction_test times out of total = " + str(np.squeeze(col_index))) #
+    # click.echo("Predict given digit in Y_prediction_test times out of total = " + str(np.squeeze(col_index))) #
 
+    click.echo(f"Predict given digit {col_index.size} times out of total {logistic_regression_model["Y_prediction_test"].size} in Y_prediction_test = {np.squeeze(col_index)}")
+    log(f"Predict given digit {col_index.size} times out of total {logistic_regression_model["Y_prediction_test"].size} in Y_prediction_test = {np.squeeze(col_index)}")
 
 @cli.command()
 @click.argument("example", type=int)

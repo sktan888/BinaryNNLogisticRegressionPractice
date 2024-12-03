@@ -80,6 +80,11 @@ def propagate(w, b, X, Y):
     A = sigmoid(np.dot(np.transpose(w), X) + b)
     cost = -(1 / m) * np.sum((Y * np.log(A) + (1 - Y) * np.log(1 - A)))
 
+
+    #print(f"Y * np.log(A): {Y * np.log(A)}")
+    #print(f"A: {A}")
+    #print(f"cost: {cost}")
+
     # BACKWARD PROPAGATION (TO FIND GRAD)
 
     dw = (1 / m) * np.dot(X, np.transpose(A - Y))
@@ -121,6 +126,8 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
         2) Update the parameters using gradient descent rule for w and b.
     """
 
+    log("optimize starts")
+
     w = copy.deepcopy(w)
     b = copy.deepcopy(b)
 
@@ -142,7 +149,7 @@ def optimize(w, b, X, Y, num_iterations=100, learning_rate=0.009, print_cost=Fal
         b -= learning_rate * db
 
         # Record the costs
-        if i % 1 == 0:
+        if i % 100 == 0:
             costs.append(cost)
 
             # Print the cost every 100 training iterations
@@ -267,28 +274,29 @@ def model(
     )  # index of (elements in Y_prediction_test equals 1)
     _, col_index = index 
     # log("Found given digit %i times out of total %i in Y_prediction_test = " % col_index.size, %Y_prediction_test.size + str(np.squeeze(col_index))) #
-    log(f"Found given digit {col_index.size} times out of total {Y_prediction_test.size} in Y_prediction_test = {np.squeeze(col_index)}")
+    # log(f"Found given digit {col_index.size} times out of total {Y_prediction_test.size} in Y_prediction_test = {np.squeeze(col_index)}")
+    log(f"Found given digit {col_index.size} times out of total {Y_prediction_test.size} in Y_prediction_test")
 
     index = np.where(
         Y_test == 1
     )  # index of (elements in X_test equals 1)
     _, col_index = index 
     #log("Found given digit %i times  in Y_test = "  % col_index.size + str(np.squeeze(col_index))) #
-    log(f"Found given digit {col_index.size} times out of total {Y_test.size} in Y_test = {np.squeeze(col_index)}")
+    log(f"Found given digit {col_index.size} times out of total {Y_test.size} in Y_test")
 
     index = np.where(
         Y_prediction_train == 1
     )  # index of (elements in Y_prediction_train equals 1)
     _, col_index = index 
     #log("Found given digit %i times  in Y_prediction_train = "  % col_index.size + str(np.squeeze(col_index))) #
-    log(f"Found given digit {col_index.size} times out of total {Y_prediction_train.size} in Y_prediction_train = {np.squeeze(col_index)}")
+    log(f"Found given digit {col_index.size} times out of total {Y_prediction_train.size} in Y_prediction_train ")
 
     index = np.where(
         Y_train == 1
     )  # index of (elements in Y_train equals 1)
     _, col_index = index 
     #log("Found given digit %i times  in Y_train = "   % col_index.size + str(np.squeeze(col_index))) #
-    log(f"Found given digit {col_index.size} times out of total {Y_train.size} in Y_train = {np.squeeze(col_index)}")
+    log(f"Found given digit {col_index.size} times out of total {Y_train.size} in Y_train ")
 
     d = {
         "costs": costs,
