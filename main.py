@@ -110,6 +110,9 @@ def predict_unseen(file_name):
     imageori = np.array(Image.open(fname))
     log("imageori shape: " + str(imageori.shape))
 
+    # Assuming 'image' is a NumPy array representing an RGB image
+    # gray_image = 0.2989 * image[:, :, 0] + 0.5870 * image[:, :, 1] + 0.1140 * image[:, :, 2]
+
     image = image[:, :, 0]
     # plt.imshow(image)
     log("image.shape " + str(image.shape))
