@@ -96,7 +96,7 @@ def predict_test(example):
 @cli.command()
 @click.argument("file_name")
 def predict_unseen(file_name):
-    """Predict unseen example from an image file supplied by file name in the argument"""
+    """Predict unseen image supplied by file name in the argument"""
     # injest test datasets from the NPY file
     # test_set_x = np.load("test_set_x.npy")
     num_px = 28  # test_set_x.shape[1]
