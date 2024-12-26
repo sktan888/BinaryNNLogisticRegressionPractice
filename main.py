@@ -16,6 +16,14 @@ def cli():
     """run NN modelling and prediction"""
     pass
 
+@cli.command()
+@click.argument("digit", type=int)
+def injest(digit):
+    """train NN model weights and bias to classify a given handwriting digit supplied in the argument"""
+
+    # injest datasets
+    train_set_x, train_set_y, test_set_x, test_set_y = myLib.data.injest(digit)
+
 
 @cli.command()
 @click.argument("digit", type=int)
@@ -33,7 +41,7 @@ def modeling(digit):
         train_set_y,
         test_set_x,
         test_set_y,
-        num_iterations=100,
+        num_iterations=2000,
         learning_rate=0.005,
         print_cost=True,
     )
@@ -46,9 +54,22 @@ def modeling(digit):
     np.save("test_set_x.npy", test_set_x)
     np.save("test_set_y.npy", test_set_y)
 
-    click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
+    #click.echo("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
     log("Cost = " + str(np.squeeze(logistic_regression_model["costs"])))
 
+    # 3 Dec 24
+    # index is tuple of arrays 
+    index = np.where(
+        logistic_regression_model["Y_prediction_test"] == 1
+    )  # index of (elements in Y_prediction_test equals 1)
+    log("b = " + str(np.squeeze(logistic_regression_model["b"])))
+    _, col_index = index 
+
+    # log("Predict given digit in Y_prediction_test times out of total = " + str(np.squeeze(col_index))) #
+    # click.echo("Predict given digit in Y_prediction_test times out of total = " + str(np.squeeze(col_index))) #
+
+    click.echo(f"Predict given digit {col_index.size} times out of total {logistic_regression_model["Y_prediction_test"].size} in Y_prediction_test = {np.squeeze(col_index)}")
+    log(f"Predict given digit {col_index.size} times out of total {logistic_regression_model["Y_prediction_test"].size} in Y_prediction_test = {np.squeeze(col_index)}")
 
 @cli.command()
 @click.argument("example", type=int)
@@ -75,7 +96,7 @@ def predict_test(example):
 @cli.command()
 @click.argument("file_name")
 def predict_unseen(file_name):
-    """Predict unseen example from an image file supplied by file name in the argument"""
+    """Predict unseen image supplied by file name in the argument"""
     # injest test datasets from the NPY file
     # test_set_x = np.load("test_set_x.npy")
     num_px = 28  # test_set_x.shape[1]
@@ -88,6 +109,9 @@ def predict_unseen(file_name):
 
     imageori = np.array(Image.open(fname))
     log("imageori shape: " + str(imageori.shape))
+
+    # Assuming 'image' is a NumPy array representing an RGB image
+    # gray_image = 0.2989 * image[:, :, 0] + 0.5870 * image[:, :, 1] + 0.1140 * image[:, :, 2]
 
     image = image[:, :, 0]
     # plt.imshow(image)
